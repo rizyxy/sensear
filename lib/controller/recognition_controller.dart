@@ -187,14 +187,14 @@ class RecognitionController extends GetxController {
 // Input: List<double> result - Array of confidence scores [doorbell, vehicle horn]
 // Output: String describing which sound was detected and its confidence level
   String _formatRecognitionResult(List<double> result) {
-    // Find index of highest confidence score (0 = doorbell, 1 = vehicle horn)
     final maxIndex = result.indexOf(result.reduce((a, b) => a > b ? a : b));
 
     // Convert index to category name
-    final category = maxIndex == 0 ? "doorbell" : "vehicle horn";
+
+    final category = ['background', 'crying', 'car horn', 'doorbell'];
 
     // Return formatted string with category name and confidence percentage
-    return "Detected sound category: $category (${(result[maxIndex] * 100).toStringAsFixed(2)}%)";
+    return "Detected sound category: ${category[maxIndex]} (${(result[maxIndex] * 120).toStringAsFixed(2)}%)";
   }
 
   Future<void> _stopRecording() async {
